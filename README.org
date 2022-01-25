@@ -1,0 +1,184 @@
+* Excersise-4D
+
+* Table of Content :toc:
+- [[#excersise-4d][Excersise-4D]]
+- [[#questions][Questions]]
+- [[#solutions][Solutions]]
+  - [[#1-write-a-c-program-to-calculate-the-two-numbers-using-pointers][1. Write a C program to calculate the two numbers using pointers.]]
+  - [[#2-write-a-c-program-to-calculate-the-factorial-of-a-given-numbers-using-pointers][2. Write a C program to calculate the factorial of a given numbers using pointers.]]
+  - [[#3-write-a-c-program-to-swap-two-numbers-using-call-by-reference-method][3. Write a C program to swap two numbers using call by reference method.]]
+  - [[#4-write-a-c-program-to-input-principle-rate-and-time-calculate-simple-interest-using-pointer][4. Write a C program to input principle, rate and time. Calculate simple interest using pointer.]]
+  - [[#5-write-a-c-program-to-check-whether-an-input-number-is-odd-or-even-using-pointer][5. Write a C program to check whether an input number is odd or even using pointer.]]
+  - [[#6-write-a-c-program-to-input-a-number-calculate-its-square-and-display-the-memory-address-of-the-inputted-number-and-the-square][6. Write a C program to input a number, calculate its square and display the memory address of the inputted number and the square.]]
+  - [[#7-write-a-c-program-to-input-a-number-and-display-its-multiplication-table-using-pointer][7. Write a C program to input a number and display its multiplication table using pointer.]]
+
+* Questions
+Practical Based Questions:
+1. Write a C program to calculate the two numbers using pointers.
+2. Write a C program to calculate the factorial of a given numbers using pointers.
+3. Write a C program to swap two numbers using call by reference method.
+4. Write a C program to input principle, rate and time. Calculate simple interest using pointer.
+5. Write a C program to check whether an input number is odd or even using pointer.
+6. Write a C program to input a number, calculate its square and display the memory address of the inputted number and the square.
+7. Write a C program to input a number and display its multiplication table using pointer.
+
+* Solutions
+** 1. Write a C program to calculate the two numbers using pointers.
+#+begin_src C
+#include <math.h>
+#include <stdio.h>
+
+void cal(int a, int b, int *add, int *sub, int *mul) {
+  *add = a + b;
+  *sub = abs(a - b);
+  *mul = a * b;
+}
+
+void main() {
+  int a, b, add = 0, sub = 0, mul = 0;
+
+  printf("Enter any two numbers: ");
+  scanf("%d %d", &a, &b);
+
+  cal(a, b, &add, &sub, &mul);
+
+  printf("Their sum is %d\n", add);
+  printf("Their diff is %d\n", sub);
+  printf("Their multiplication is %d\n", mul);
+}
+#+end_src
+
+** 2. Write a C program to calculate the factorial of a given numbers using pointers.
+#+begin_src C
+#include <stdio.h>
+
+void fact(int *n) {
+  int i, a;
+
+  a = *n;
+
+  for (i = 0; a != 1; i++) {
+    *n = (*n) * (a - 1);
+    a--;
+  }
+}
+
+void main() {
+  int n;
+
+  printf("Enter any number: ");
+  scanf("%d", &n);
+
+  fact(&n);
+
+  printf("factorial is %d", n);
+}
+#+end_src
+
+** 3. Write a C program to swap two numbers using call by reference method.
+#+begin_src C
+#include <stdio.h>
+
+void swp(int *a, int *b) {
+  *a = *a + *b;
+  *b = *a - *b;
+  *a = *a - *b;
+}
+void main() {
+
+  int a = 5, b = 6;
+
+  printf("\nValue of a=%d\n", a);
+  printf("Value of b=%d\n", b);
+
+  swp(&a, &b);
+
+  printf("\n---VALUE AFTER SWAPPING----\n\n");
+  printf("Value of a=%d\n", a);
+  printf("Value of b=%d\n", b);
+}
+#+end_src
+
+** 4. Write a C program to input principle, rate and time. Calculate simple interest using pointer.
+#+begin_src C
+#include <stdio.h>
+
+void si(float *p, float t, float r) { *p = ((*p) * t * r) / 100; }
+
+void main() {
+  float p, t, r;
+
+  puts("Enter principle,time and rate: ");
+  scanf("%f %f %f", &p, &t, &r);
+
+  si(&p, t, r);
+
+  printf("\nValue is Simple Interest is %.4f", p);
+}
+#+end_src
+
+** 5. Write a C program to check whether an input number is odd or even using pointer.
+#+begin_src C
+#include <stdio.h>
+
+void eveodd(int *n) {
+  if (*n % 2 == 0) {
+    puts("even");
+  } else {
+    puts("odd");
+  }
+}
+
+void main() {
+  int n;
+
+  puts("Enter any number: ");
+  scanf("%d", &n);
+
+  eveodd(&n);
+}
+#+end_src
+
+** 6. Write a C program to input a number, calculate its square and display the memory address of the inputted number and the square.
+#+begin_src C
+#include <stdio.h>
+
+void squr(int *n) {
+  printf("Memory address of inputted number is %p", n);
+
+  int sq = (*n) * (*n);
+
+  printf("\nSquare of number is %d", sq);
+  printf("\nMemory address of square number is %p", &sq);
+}
+void main() {
+  int n;
+
+  puts("Enter any number: ");
+  scanf("%d", &n);
+
+  squr(&n);
+}
+#+end_src
+
+** 7. Write a C program to input a number and display its multiplication table using pointer.
+#+begin_src C
+#include <stdio.h>
+
+void mult(int *n) {
+  int i;
+
+  for (i = 1; i <= 10; i++) {
+    printf("\n%d * %d = %d", *n, i, (*n) * i);
+  }
+}
+
+void main() {
+  int n;
+
+  printf("Enter any number: ");
+  scanf("%d", &n);
+
+  mult(&n);
+}
+#+end_src
